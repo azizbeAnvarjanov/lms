@@ -23,13 +23,38 @@ export default function Home() {
 
   if (loading) {
     return (
-      <div className="p-4 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-6">
-        <Skeleton className="h-[200px] rounded-lg" />
-        <Skeleton className="h-[200px] rounded-lg" />
-        <Skeleton className="h-[200px] rounded-lg" />
-        <Skeleton className="h-[200px] rounded-lg" />
-        <Skeleton className="h-[200px] rounded-lg" />
-        <Skeleton className="h-[200px] rounded-lg" />
+      <div>
+        <div className="flex items-center justify-between p-5">
+          <Skeleton className="h-[50px] w-[150px] rounded-lg" />
+          <Skeleton className="h-[30px] w-[600px] rounded-lg" />
+          <Skeleton className="h-[30px] w-[30px] rounded-lg" />
+        </div>
+        <div className="p-4 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-6">
+          <div>
+            <Skeleton className="h-[200px] rounded-lg" />
+            <Skeleton className="h-[10px] w-[250px] rounded-lg" />
+            <Skeleton className="h-[10px] w-[150px] rounded-lg" />
+            <Skeleton className="h-[10px] w-[50px] rounded-lg" />
+          </div>
+          <div>
+            <Skeleton className="h-[200px] rounded-lg" />
+            <Skeleton className="h-[10px] w-[250px] rounded-lg" />
+            <Skeleton className="h-[10px] w-[150px] rounded-lg" />
+            <Skeleton className="h-[10px] w-[50px] rounded-lg" />
+          </div>
+          <div>
+            <Skeleton className="h-[200px] rounded-lg" />
+            <Skeleton className="h-[10px] w-[250px] rounded-lg" />
+            <Skeleton className="h-[10px] w-[150px] rounded-lg" />
+            <Skeleton className="h-[10px] w-[50px] rounded-lg" />
+          </div>
+          <div>
+            <Skeleton className="h-[200px] rounded-lg" />
+            <Skeleton className="h-[10px] w-[250px] rounded-lg" />
+            <Skeleton className="h-[10px] w-[150px] rounded-lg" />
+            <Skeleton className="h-[10px] w-[50px] rounded-lg" />
+          </div>
+        </div>
       </div>
     );
   }
@@ -38,7 +63,7 @@ export default function Home() {
     <div>
       <Navbar />
 
-      <div className="p-4 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-6">
+      <div className="p-4 grid grid-cols-1 md:grid-cols-4 xl:grid-cols-5 gap-6">
         {courses.map((course, idx) => (
           <Link
             href={`course/${course.id}`}
@@ -55,6 +80,7 @@ export default function Home() {
             </div>
             <div className="p-3">
               <h1 className="font-bold">{course.name}</h1>
+              <h1 className="">{course.description}</h1>
             </div>
           </Link>
         ))}

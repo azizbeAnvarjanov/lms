@@ -13,10 +13,10 @@ const Navbar = () => {
   return (
     <div className="flex items-center justify-between p-5">
       <Link href="/" className="flex items-center gap-3">
-        <div className="w-[50px] h-[50px] relative ">
+        <div className="w-[30px] h-[30px] md:w-[50px] md:h-[50px] relative ">
           <Image fill src="/logo.png" alt="" />
         </div>
-        <div className="font-bold">
+        <div className="font-bold hidden">
           <h1>Impuls</h1>
           <h1>Tibbiyot Instituti</h1>
         </div>

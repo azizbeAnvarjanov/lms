@@ -8,8 +8,23 @@ import ReactPlayer from "react-player";
 import ShareButton from "@/components/ShareButton";
 import Equalizer from "@/components/Equalizer";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ChevronLeft, CirclePause, CirclePlay } from "lucide-react";
+import {
+  AlignJustify,
+  ArrowUpRight,
+  ChevronLeft,
+  CirclePause,
+  CirclePlay,
+  FileAxis3d,
+} from "lucide-react";
 import Link from "next/link";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const CoursePage = () => {
   const params = useParams();
@@ -108,8 +123,49 @@ const CoursePage = () => {
               <ChevronLeft />
             </Link>
             <h1 className="font-bold">Mavzular</h1>
+            <div className="block md:hidden">
+              <Sheet>
+                <SheetTrigger>
+                  <AlignJustify />
+                </SheetTrigger>
+                <SheetContent>
+                  <SheetHeader>
+                    <SheetTitle></SheetTitle>
+                  </SheetHeader>
+                  <ul className="">
+                    {topics.map((topic, index) => (
+                      <li
+                        key={index}
+                        onClick={() =>
+                          handleVideoSelect(
+                            topic.video,
+                            topic.note,
+                            topic.name,
+                            topic.description
+                          )
+                        }
+                        className={`cursor-pointer hover:bg-muted font-[400] border-t h-[60px] px-4 flex items-center justify-between ${
+                          selectedVideo === topic.video
+                            ? "bg-green-200 text-green-500"
+                            : "bg-white text-[#718599]"
+                        }`}
+                      >
+                        <div className="flex items-center gap-2">
+                          {selectedVideo !== topic.video ? (
+                            <CirclePlay size={20} strokeWidth={1.75} />
+                          ) : (
+                            <CirclePause size={20} strokeWidth={1.75} />
+                          )}
+                          <h3>{topic.name}</h3>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </SheetContent>
+              </Sheet>
+            </div>
           </div>
-          <ul>
+          <ul className="hidden md:block">
             {topics.map((topic, index) => (
               <li
                 key={index}
@@ -142,7 +198,7 @@ const CoursePage = () => {
       </div>
       {/* Chap tomonda video va note */}
       <div className="w-full md:w-[78%] overflow-y-scroll scrollth text-black">
-        <div className="aspect-w-16 h-screen overflow-hidden ">
+        <div className="aspect-w-16 h-[30vh] md:h-screen overflow-hidden ">
           <ReactPlayer
             url={selectedVideo}
             width="100%"
@@ -188,9 +244,13 @@ const CoursePage = () => {
                   href={selectedNote}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-500 underline hover:text-blue-700"
+                  className="text-blue-500 hover:bg-muted underline hover:text-blue-700 p-4 border rounded-md flex md:w-[500px] my-4 items-center justify-between"
                 >
-                  PDF ni ochish
+                  <span className="flex items-center gap-3">
+                    <FileAxis3d />
+                    Mavzu note fayli
+                  </span>
+                  <ArrowUpRight />
                 </a>
               )
             ) : (

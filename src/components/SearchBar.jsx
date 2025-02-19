@@ -50,7 +50,7 @@ export default function SearchBar() {
   return (
     <>
       <button
-        className="inline-flex h-9 w-[500px] rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground shadow-sm shadow-black/5 transition-shadow placeholder:text-muted-foreground/70 focus-visible:border-ring focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/20"
+        className="inline-flex h-9 w-auto md:w-[500px] overflow-hidden rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground shadow-sm shadow-black/5 transition-shadow placeholder:text-muted-foreground/70 focus-visible:border-ring focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/20"
         onClick={() => setOpen(true)}
       >
         <span className="flex grow items-center">
@@ -66,11 +66,10 @@ export default function SearchBar() {
           ⌘K
         </kbd>
       </button>
-      <CommandDialog open={open} onOpenChange={setOpen}>
+      <CommandDialog open={open} onOpenChange={setOpen} className="bg-red-600">
         <CommandInput placeholder="Kurs nomini kiriting...." />
         <CommandList>
           <CommandEmpty>Kurs topilamdi !</CommandEmpty>
-
           <CommandGroup>
             {courses?.map((course, idx) => (
               <CommandItem key={idx} className="mb-1">

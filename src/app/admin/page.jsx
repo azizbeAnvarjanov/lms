@@ -8,13 +8,13 @@ import {
   updateDoc,
   onSnapshot,
 } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { useRouter } from "next/navigation";
 import { db } from "../firebase";
 import { DialogTitle } from "@radix-ui/react-dialog";
+import Navbar from "@/components/Navbar";
 
 export default function Admin() {
   const [courses, setCourses] = useState([]);
@@ -39,8 +39,8 @@ export default function Admin() {
 
   return (
     <div className="p-4">
+      <Navbar />
       <h1 className="text-2xl font-bold mb-4">Admin Panel - Kurslar</h1>
-
       <Dialog>
         <DialogTrigger asChild>
           <Button>+ Yangi Kurs</Button>

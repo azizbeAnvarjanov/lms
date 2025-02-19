@@ -25,7 +25,7 @@ Command.displayName = CommandPrimitive.displayName;
 
 const CommandDialog = ({ children, ...props }) => {
   return (
-    <Dialog {...props}>
+    <Dialog {...props} >
       <DialogTitle></DialogTitle>{" "}
       {/* Temporary fix to silence console warning */}
       <DialogDescription></DialogDescription>{" "}
