@@ -211,7 +211,9 @@ const CoursePage = () => {
           {/* Note (mavzu haqida eslatma) */}
           <div className="flex items-center justify-between mb-2 px-3">
             <h1 className="text-xl font-bold">{selectedCourseName}</h1>
-            <ShareButton link={`http://localhost:3000/course/${courseId}`} />
+            <ShareButton
+              link={`https://lms-three-sable.vercel.app/course/${courseId}`}
+            />
           </div>
           <div className="mt-4 p-4 border rounded-lg bg-gray-50">
             <h3 className="font-semibold text-lg">Mavzu haqida</h3>

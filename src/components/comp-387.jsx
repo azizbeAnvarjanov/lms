@@ -57,7 +57,7 @@ export default function Component() {
                   id={id}
                   className="pe-9"
                   type="text"
-                  defaultValue="https://originui.com/Avx8HD"
+                  defaultValue="https://lms-three-sable.vercel.app/"
                   aria-label="Share link"
                   readOnly />
                 <TooltipProvider delayDuration={0}>
