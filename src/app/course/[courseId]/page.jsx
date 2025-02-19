@@ -38,6 +38,7 @@ const CoursePage = () => {
   );
 
   const [isLoading, setIsLoading] = useState(true);
+  const [open, setOpen] = useState(false); // Sheet holati
 
   useEffect(() => {
     const fetchTopics = async () => {
@@ -124,8 +125,8 @@ const CoursePage = () => {
             </Link>
             <h1 className="font-bold">Mavzular</h1>
             <div className="block md:hidden">
-              <Sheet>
-                <SheetTrigger>
+              <Sheet open={open} onOpenChange={setOpen}>
+                <SheetTrigger onClick={() => setOpen(true)}>
                   <AlignJustify />
                 </SheetTrigger>
                 <SheetContent>
@@ -136,14 +137,15 @@ const CoursePage = () => {
                     {topics.map((topic, index) => (
                       <li
                         key={index}
-                        onClick={() =>
+                        onClick={() => {
                           handleVideoSelect(
                             topic.video,
                             topic.note,
                             topic.name,
                             topic.description
-                          )
-                        }
+                          );
+                          setOpen(false);
+                        }}
                         className={`cursor-pointer hover:bg-muted font-[400] border-t h-[60px] px-4 flex items-center justify-between ${
                           selectedVideo === topic.video
                             ? "bg-green-200 text-green-500"
