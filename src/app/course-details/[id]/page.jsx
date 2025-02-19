@@ -148,7 +148,7 @@ const CourseDetails = () => {
   };
 
   const handleAddTopic = async () => {
-    if (!newTopic.name || !newTopic.description || !newTopic.video) return;
+    if (!newTopic.name || !newTopic.video) return;
     const docRef = await addDoc(
       collection(db, "courses", courseId, "topics"),
       newTopic
@@ -248,7 +248,7 @@ const CourseDetails = () => {
           </ul>
         </div>
       </div>
-      <div className="flex items-start flex-col justify-end">
+      <div className="flex items-start flex-col justify-start">
         <div className="w-full my-5">
           <h2 className="text-2xl font-semibold mt-6">Mavzu qo'shish</h2>
           <Input

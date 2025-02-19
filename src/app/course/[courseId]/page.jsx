@@ -156,7 +156,7 @@ const CoursePage = () => {
                           ) : (
                             <CirclePause size={20} strokeWidth={1.75} />
                           )}
-                          <h3>{topic.name}</h3>
+                          <h3 className="text-sm line-clamp-1">{topic.name}</h3>
                         </div>
                       </li>
                     ))}
@@ -243,7 +243,7 @@ const CoursePage = () => {
                 </a>
               )
             ) : (
-              <p className="text-gray-700">Eslatma mavjud emas.</p>
+              <p className="text-gray-700"></p>
             )}
           </div>
         </div>
