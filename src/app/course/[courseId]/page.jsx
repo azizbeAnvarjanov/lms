@@ -8,6 +8,8 @@ import ReactPlayer from "react-player";
 import ShareButton from "@/components/ShareButton";
 import Equalizer from "@/components/Equalizer";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ChevronLeft, CirclePause, CirclePlay } from "lucide-react";
+import Link from "next/link";
 
 const CoursePage = () => {
   const params = useParams();
@@ -66,35 +68,81 @@ const CoursePage = () => {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col md:flex-row gap-4 p-4">
-        <div className="w-full md:w-2/3">
-          <div className="aspect-w-16 h-[700px] border rounded-xl overflow-hidden">
-            <Skeleton className="w-full h-full"/>
+      <div className="flex flex-col md:flex-row">
+        <div className="w-full md:w-[23%]">
+          <div className="bg-white">
+            <div className="h-[70px] flex p-4 items-center justify-between">
+              <Skeleton className="rounded-xl border w-[40px] h-[40px]" />
+              <Skeleton className="w-[100px] h-[8px]" />
+            </div>
+            <Skeleton className="w-full h-[50px]" />
+            <Skeleton className="w-full h-[50px]" />
+            <Skeleton className="w-full h-[50px]" />
+            <Skeleton className="w-full h-[50px]" />
+            <Skeleton className="w-full h-[50px]" />
+            <Skeleton className="w-full h-[50px]" />
+          </div>
+        </div>
+        <div className="w-full md:w-[78%]">
+          <div className="aspect-w-16 h-[700px] border overflow-hidden">
+            <Skeleton className="w-full h-full" />
           </div>
           <br />
-          <Skeleton className="w-full h-[10px] mb-3"/>
-          <Skeleton className="w-full h-[50px] mb-3"/>
-
-        </div>
-        <div className="w-full md:w-1/3">
-          <div className="bg-white rounded-xl border p-5">
-          <Skeleton className="w-full h-[50px] mb-3"/>
-          <Skeleton className="w-full h-[50px] mb-3"/>
-          <Skeleton className="w-full h-[50px] mb-3"/>
-          <Skeleton className="w-full h-[50px] mb-3"/>
-          <Skeleton className="w-full h-[50px] mb-3"/>
-          <Skeleton className="w-full h-[50px] mb-3"/>
-          </div>
+          <Skeleton className="w-full h-[10px]" />
+          <Skeleton className="w-full h-[50px]" />
         </div>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col md:flex-row gap-4 p-4">
+    <div className="flex flex-col md:flex-row max-h-[100vh] overflow-hidden">
+      {/* Ong tomonda mavzular ro‘yxati */}
+      <div className="w-full md:w-[23%] overflow-y-scroll scrollth border-r">
+        <div className="bg-white">
+          <div className="flex items-center justify-between p-4 text-black">
+            <Link
+              href="/"
+              className="rounded-xl border w-[40px] h-[40px] flex items-center justify-center hover:bg-muted"
+            >
+              <ChevronLeft />
+            </Link>
+            <h1 className="font-bold">Mavzular</h1>
+          </div>
+          <ul>
+            {topics.map((topic, index) => (
+              <li
+                key={index}
+                onClick={() =>
+                  handleVideoSelect(
+                    topic.video,
+                    topic.note,
+                    topic.name,
+                    topic.description
+                  )
+                }
+                className={`cursor-pointer hover:bg-muted font-[400] border-t h-[60px] px-4 flex items-center justify-between ${
+                  selectedVideo === topic.video
+                    ? "bg-green-200 text-green-500"
+                    : "bg-white text-[#718599]"
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  {selectedVideo !== topic.video ? (
+                    <CirclePlay size={20} strokeWidth={1.75} />
+                  ) : (
+                    <CirclePause size={20} strokeWidth={1.75} />
+                  )}
+                  <h3>{topic.name}</h3>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
       {/* Chap tomonda video va note */}
-      <div className="w-full md:w-2/3">
-        <div className="aspect-w-16 h-[700px] border rounded-xl overflow-hidden shadow-xl">
+      <div className="w-full md:w-[78%] overflow-y-scroll scrollth text-black">
+        <div className="aspect-w-16 h-screen overflow-hidden ">
           <ReactPlayer
             url={selectedVideo}
             width="100%"
@@ -116,70 +164,40 @@ const CoursePage = () => {
             }}
           />
         </div>
-        {/* Note (mavzu haqida eslatma) */}
-        <div className="flex items-center justify-between mb-2 pt-5 px-3">
-          <h1 className="text-xl font-bold">{selectedCourseName}</h1>
-          <ShareButton link={`http://localhost:3000/course/${courseId}`} />
-        </div>
-        <div className="mt-4 p-4 border rounded-lg bg-gray-50">
-          <h3 className="font-semibold text-lg">Mavzu haqida</h3>
-          <p>{selectedCourseDescription}</p>
-          {selectedNote ? (
-            selectedNote.includes("drive.google.com") ? (
-              <a
-                href={selectedNote}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-500 underline hover:text-blue-700"
-              >
-                PDF ni ochish
-              </a>
-            ) : (
-              <a
-                href={selectedNote}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-500 underline hover:text-blue-700"
-              >
-                PDF ni ochish
-              </a>
-            )
-          ) : (
-            <p className="text-gray-700">Eslatma mavjud emas.</p>
-          )}
-        </div>
-      </div>
-
-      {/* Ong tomonda mavzular ro‘yxati */}
-      <div className="w-full md:w-1/3">
-        <Card className="bg-white rounded-xl shadow-lg">
-          <CardHeader>
-            <CardTitle>Mavzular</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="space-y-1">
-              {topics.map((topic, index) => (
-                <li
-                  key={index}
-                  onClick={() =>
-                    handleVideoSelect(
-                      topic.video,
-                      topic.note,
-                      topic.name,
-                      topic.description
-                    )
-                  }
-                  className={`cursor-pointer h-[50px] px-4 rounded-lg transition flex items-center justify-between ${
-                    selectedVideo === topic.video ? "bg-gray-100" : "bg-white"
-                  }`}
+        <div className="p-4">
+          {/* Note (mavzu haqida eslatma) */}
+          <div className="flex items-center justify-between mb-2 px-3">
+            <h1 className="text-xl font-bold">{selectedCourseName}</h1>
+            <ShareButton link={`http://localhost:3000/course/${courseId}`} />
+          </div>
+          <div className="mt-4 p-4 border rounded-lg bg-gray-50">
+            <h3 className="font-semibold text-lg">Mavzu haqida</h3>
+            <p>{selectedCourseDescription}</p>
+            {selectedNote ? (
+              selectedNote.includes("drive.google.com") ? (
+                <a
+                  href={selectedNote}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 underline hover:text-blue-700"
                 >
-                  <h3 className="font-semibold">{topic.name}</h3>
-                  {selectedVideo === topic.video && <Equalizer />}
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
+                  PDF ni ochish
+                </a>
+              ) : (
+                <a
+                  href={selectedNote}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 underline hover:text-blue-700"
+                >
+                  PDF ni ochish
+                </a>
+              )
+            ) : (
+              <p className="text-gray-700">Eslatma mavjud emas.</p>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

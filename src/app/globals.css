@@ -2,9 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
+
 
 @layer base {
   :root {
@@ -232,4 +230,25 @@ body {
   100% {
     background-color: transparent;
   }
+}
+
+.scrollth::-webkit-scrollbar {
+	width: 0px;
+}
+
+.scrollth::-webkit-scrollbar-track {
+	background-color: rgb(255, 255, 255);
+	-webkit-border-radius: 1px;
+}
+body::-webkit-scrollbar-track {
+	background-color: rgb(255, 255, 255);
+	-webkit-border-radius: 1px;
+}
+.scrollth::-webkit-scrollbar-thumb:vertical {
+	background-color: #ededed;
+	-webkit-border-radius: 50px;
+    -webkit-width:5;
+}
+.scrollth::-webkit-scrollbar-thumb:vertical:hover {
+	background: rgba(0, 245, 255, 0.65);
 }
