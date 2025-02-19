@@ -205,19 +205,6 @@ const CoursePage = () => {
             height="100%"
             controls
             playing
-            config={{
-              youtube: {
-                playerVars: {
-                  modestbranding: 1,
-                  rel: 0,
-                  showinfo: 0,
-                  fs: 1,
-                  disablekb: 1,
-                  iv_load_policy: 3,
-                  playsinline: 1,
-                },
-              },
-            }}
           />
         </div>
         <div className="p-4">
