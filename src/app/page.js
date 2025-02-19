@@ -28,6 +28,7 @@ export default function Home() {
        <Skeleton className="h-[200px] rounded-lg" />
        <Skeleton className="h-[200px] rounded-lg" />
        <Skeleton className="h-[200px] rounded-lg" />
+       <Skeleton className="h-[200px] rounded-lg" />
 
     </div>
       )
