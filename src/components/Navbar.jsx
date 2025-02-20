@@ -11,9 +11,9 @@ import Link from "next/link";
 const Navbar = () => {
   const router = useRouter();
   const [user, setUser] = useState(null);
-  const storedUser = localStorage.getItem("user");
   
   useEffect(() => {
+    const storedUser = localStorage.getItem("user");
     if (storedUser) {
       setUser(JSON.parse(storedUser)); // JSON formatidan obyektga o'tkazamiz
     }
