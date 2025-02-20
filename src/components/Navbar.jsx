@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -9,7 +9,18 @@ import SearchBar from "./SearchBar";
 import Link from "next/link";
 
 const Navbar = () => {
-
+  const router = useRouter();
+  const [user, setUser] = useState(null);
+  const storedUser = localStorage.getItem("user");
+  
+  useEffect(() => {
+    if (storedUser) {
+      setUser(JSON.parse(storedUser)); // JSON formatidan obyektga o'tkazamiz
+    }
+    if (!storedUser) {
+      router.push("/login"); // Agar user yo'q bo'lsa, login sahifasiga yo'naltiramiz
+    }
+  }, []);
   return (
     <div className="flex items-center justify-between p-5">
       <Link href="/" className="flex items-center gap-3">
@@ -25,7 +36,7 @@ const Navbar = () => {
         <SearchBar />
       </div>
       <div className="flex items-center gap-3">
-        <Avatar />
+        <Avatar user={user} />
       </div>
     </div>
   );
